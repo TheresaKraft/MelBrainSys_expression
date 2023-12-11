@@ -45,8 +45,8 @@ freqPaths <- pathwayGenePlotDfTable$Var1[pathwayGenePlotDfTable$Freq >= 10]
 pathwayGenePlotDfFreq <- pathwayGenePlotDf[pathwayGenePlotDf$association %in% freqPaths,]
 
 
-pathwayGenePlotDfFreq$association[pathwayGenePlotDfFreq$association == "pi3k_akt"] <- "Pi3K/Akt"
-pathwayGenePlotDfFreq$association[pathwayGenePlotDfFreq$association == "jak_stat"] <- "JAK-STAT"
+pathwayGenePlotDfFreq$association[pathwayGenePlotDfFreq$association == "pi3k_akt"] <- "PI3K/Akt"
+pathwayGenePlotDfFreq$association[pathwayGenePlotDfFreq$association == "jak_stat"] <- "Jak-STAT"
 
 plotPath <-    ggplot(pathwayGenePlotDfFreq, aes(fill=association,y=value, x=reorder(PatientID,-ranking)), ylim = c(0,4)) + 
   geom_bar(width = 0.7, stat="identity", position = position_dodge(width = 0.7), colour="white") + 
