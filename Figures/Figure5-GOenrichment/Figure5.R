@@ -16,7 +16,7 @@ resultPlus$color[str_detect(resultPlus$Description, "synap") ] <- "synaptic proc
 resultPlus$color[ resultPlus$Description == "forebrain development" | resultPlus$Description == "gliogenesis" | resultPlus$Description == "astrocyte differentiation" | resultPlus$Description == "limbic system development" | 
                     resultPlus$Description == "glial cell differentiation"] <- "brain-specific cell development"
 resultPlus$color[ resultPlus$Description == "behavior"| resultPlus$Description == "calcium ion-regulated exocytosis of neurotransmitter"| 
-                    resultPlus$Description == "adult behavior"] <- "neuronal processes"
+                    resultPlus$Description == "adult behavior" | resultPlus$Description == "calcium-dependent cell-cell adhesion"] <- "neuronal processes"
 
 resultMinus <- resultGO[resultGO$Expression.direction  == "Decreased",]
 resultMinus <- resultMinus[1:20,]
@@ -46,7 +46,7 @@ plotMinus <- ggplot(resultMinus, aes(x = -log10(qvalue), y = reorder(Description
 
 plotCand <- ggplot(numCandGens, aes(cutOff, genesCount, color = Expression)) + geom_point(cex = 3) +  geom_line(aes(cutOff,genesCount, color = Expression)) +
   scale_y_continuous(trans = "log10", name = "Number of gene candidates", breaks = c(1,10,100,1000,10000,10000,100000), labels = c(1,10,100,1000,10000,10000,"100000")) + 
-  scale_x_continuous(name = "Number of patients cutoff", breaks = c(0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17), minor_breaks = NULL)  +
+  scale_x_continuous(name = "Number of patients cutoff", breaks = c(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17), minor_breaks = NULL,limits = c(1,16))  +
   scale_color_manual(values = c("cornflowerblue","brown3")) + theme(legend.position = "none")+ 
   theme(legend.position = c(0.943,0.84), legend.background = element_rect(size=0.5, linetype="solid", 
                                                                           colour ="black"))  + labs(color = "Intracranial \nexpression") +
